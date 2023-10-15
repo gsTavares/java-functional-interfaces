@@ -1,5 +1,6 @@
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BinaryOperator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -12,6 +13,7 @@ public class App {
         runSupplierExample();
         runFunctionExample();
         runPredicateExample();
+        runBinaryOperatorExample();
     }
 
     /*
@@ -57,12 +59,25 @@ public class App {
 
     /*
      * Predicate<T>
-     * Receives a T argumnet and returns a boolean value (true or false). Commom
+     * Receives a T argument and returns a boolean value (true or false). Commom
      * used for filtering operations
      */
     static void runPredicateExample() {
         List<String> words = Arrays.asList("java", "kotlin", "phyton", "javascript", "c", "go", "ruby");
         Predicate<String> moreThanFiveChars = word -> word.length() > 5;
         words.stream().filter(moreThanFiveChars).forEach(System.out::println);
+    }
+
+    /*
+     * BinaryOperator<T>
+     * Receives two T arguments and returns a T object. Commom used for sum a
+     * collection of numbers or
+     * object combining, like string concatenation
+     */
+    static void runBinaryOperatorExample() {
+        List<Integer> number = Arrays.asList(1, 2, 3, 4, 5, 6);
+        BinaryOperator<Integer> sum = (number1, number2) -> number1 + number2;
+        int result = number.stream().reduce(0, sum);
+        System.out.println("Sum equals to " + result);
     }
 }
