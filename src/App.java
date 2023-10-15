@@ -2,6 +2,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -10,6 +11,7 @@ public class App {
         runConsumerExample();
         runSupplierExample();
         runFunctionExample();
+        runPredicateExample();
     }
 
     /*
@@ -43,12 +45,24 @@ public class App {
 
     /*
      * Function<T, R>
-     * Receives a T argument and returns the R argument. Used object transforming or mapping
+     * Receives a T argument and returns the R argument. Used object transforming or
+     * mapping
      */
     static void runFunctionExample() {
-        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6);
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
         Function<Integer, Integer> multiplyBy2 = number -> number * 2;
         List<Integer> doubledValues = numbers.stream().map(multiplyBy2).toList();
         doubledValues.forEach(System.out::println);
+    }
+
+    /*
+     * Predicate<T>
+     * Receives a T argumnet and returns a boolean value (true or false). Commom
+     * used for filtering operations
+     */
+    static void runPredicateExample() {
+        List<String> words = Arrays.asList("java", "kotlin", "phyton", "javascript", "c", "go", "ruby");
+        Predicate<String> moreThanFiveChars = word -> word.length() > 5;
+        words.stream().filter(moreThanFiveChars).forEach(System.out::println);
     }
 }
