@@ -1,1 +1,1 @@
-# Java functional interface examples
+# Java main functional interfaces examples
